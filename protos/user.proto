@@ -1,0 +1,35 @@
+syntax = "proto3";
+option go_package = "./users";
+package users;
+
+service Users {
+    rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {}
+    rpc GetUserById(GetUserByIdRequest) returns (GetUserByIdResponse) {}
+    rpc GetUserByIdStream(stream GetUserStreamRequest) returns (stream GetUserStreamResponse) {}
+}
+message User {
+    int32 id = 1;
+    string fname = 2;
+    string phone = 3;
+    string height = 4;
+    string city = 5;
+    bool married = 6;
+}
+message GetUsersRequest {
+}
+message GetUsersResponse {
+    repeated User users = 1;
+}
+
+message GetUserByIdRequest {
+    repeated int32 id = 1;
+}
+message GetUserByIdResponse {
+    repeated User user = 1;
+}
+message GetUserStreamRequest {
+    int32 id = 1;
+}
+message GetUserStreamResponse {
+    User user = 1;
+}
